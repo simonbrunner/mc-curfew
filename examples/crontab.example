@@ -1,0 +1,5 @@
+# One line is enough: the script decides per player what to do.
+# Cron uses the system time zone – check it with "timedatectl".
+# Output is discarded; problems are logged once to syslog (journalctl -t mc-curfew).
+
+* * * * *  /usr/local/bin/mc-curfew.sh tick >/dev/null 2>&1

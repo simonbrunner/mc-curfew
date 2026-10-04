@@ -1,0 +1,24 @@
+# mc-curfew configuration – copy to /etc/mc-curfew.conf (or next to the script).
+# This file is sourced by bash; keep it owned by root.
+
+# docker compose service name of the Minecraft server (itzg/minecraft-server)
+SERVICE="minecraft"
+# or a fixed container name instead of the lookup:
+# CONTAINER="minecraft-server-1"
+# or no Docker at all, any RCON client that takes the command as last argument:
+# RCON_CMD="mcrcon -H 127.0.0.1 -P 25575 -p change-me"
+
+DEFAULT_WINDOW="21:30-06:30"   # for players without a window of their own
+WARN_MINUTES=10                # in-game warning before the curfew starts
+DEFAULT_LANG="en"              # en | de | fr | it | es
+# STATE_DIR="/var/lib/mc-curfew"
+
+# Players under curfew: "<lang> [window] [days:window ...]"
+#   window      HH:MM-HH:MM, may cross midnight; "off" = no curfew
+#   days:window different window for the night starting on these days
+#               (mo tu we th fr sa su – German di mi do so work too)
+PLAYERS=(
+  [ExamplePlayer]="en"                                   # DEFAULT_WINDOW every night
+  [AnotherPlayer]="de 21:00-06:30 fr,sa:22:30-08:00"     # later on weekend nights
+  [ThirdPlayer]="fr 20:30-07:00 sa:off"                  # free on Saturday night
+)
